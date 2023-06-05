@@ -51,7 +51,10 @@ export class MailerService {
           context: mailDesc.variables,
         });
       },
-      () => EMAIL_FAILED,
+      (error) => {
+        console.log(error);
+        return EMAIL_FAILED;
+      },
     );
   }
 
@@ -70,6 +73,7 @@ export class MailerService {
         context: mailDesc.variables,
       });
     } catch (error) {
+      console.log(error);
       return throwErr(EMAIL_FAILED);
     }
   }
@@ -93,6 +97,7 @@ export class MailerService {
       });
       return res;
     } catch (error) {
+      console.log(error);
       return throwErr(EMAIL_FAILED);
     }
   }
